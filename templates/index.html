@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Task Manager</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Task Manager</h1>
+
+<h2>Add Task</h2>
+
+<form action="/add" method="post">
+
+<input name="title" placeholder="Task Title" required>
+
+<input name="description" placeholder="Description" required>
+
+<select name="priority">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+
+<select name="status">
+<option>Pending</option>
+<option>Completed</option>
+</select>
+
+<button type="submit">Add Task</button>
+
+</form>
+
+<h2>Your Tasks</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Description</th>
+<th>Priority</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+{% for task in tasks %}
+
+<tr>
+
+<td>{{task.id}}</td>
+<td>{{task.title}}</td>
+<td>{{task.description}}</td>
+<td>{{task.priority}}</td>
+<td>{{task.status}}</td>
+
+<td>
+<a href="/edit/{{task.id}}">Edit</a> |
+<a href="/delete/{{task.id}}">Delete</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
